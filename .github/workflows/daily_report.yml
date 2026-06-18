@@ -1,4 +1,4 @@
-# .github/workflows/daily_report.yml
+# .github/workflows/daily_report.yml 
 name: MarketPulse Günlük Rapor
 
 on:
