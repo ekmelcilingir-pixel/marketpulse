@@ -1,16 +1,17 @@
-# .github/workflows/daily_report.yml 
 name: MarketPulse Günlük Rapor
 
 on:
   schedule:
-    # Her gün 04:00 UTC = 07:00 İstanbul (Yaz saati: +3)
-    - cron: '0 4 * * 1-5'   # Pazartesi-Cuma
-  workflow_dispatch:          # Manuel tetikleme butonu (test için)
+    - cron: '0 4 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   send_report:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
+    permissions:
+      contents: write
 
     steps:
       - name: Kodu çek
@@ -32,3 +33,17 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           RECIPIENT_EMAIL:    ${{ secrets.RECIPIENT_EMAIL }}
         run: python src/main.py
+
+      - name: HTML'i repoya kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --staged --quiet || git commit -m "chore: daily report $(date +'%Y-%m-%d')"
+          git push
+
+      - name: GitHub Pages deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
