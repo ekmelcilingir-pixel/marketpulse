@@ -1,5 +1,4 @@
-# src/main.py
-import sys, traceback
+import sys, traceback, os
 from fetch_data      import collect_all
 from generate_report import generate_html_report
 from send_email      import send_report
@@ -15,6 +14,11 @@ def main():
     print("🤖 Claude raporu oluşturuyor...")
     html = generate_html_report(market_data)
     print(f"✅ Rapor hazır — {len(html):,} karakter")
+
+    os.makedirs("docs", exist_ok=True)
+    with open("docs/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("✅ docs/index.html kaydedildi")
 
     print("📧 E-posta gönderiliyor...")
     send_report(html, market_data)
