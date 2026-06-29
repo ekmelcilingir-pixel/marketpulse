@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarketPulse — Ekmel'in Piyasası | 26 Haziran 2026</title>
+    <title>MarketPulse | 29 Haziran 2026</title>
     <style>
         :root {
             --bg: #0e1420;
-            --bg-card: #151d2b;
-            --bg-elevated: #1a2436;
+            --bg-card: #151c2c;
+            --bg-card-alt: #1a2235;
             --accent: #c9ff44;
             --green: #4eea99;
             --red: #ff6b85;
             --amber: #ffc266;
-            --text: #e4e8ef;
-            --text-muted: #8892a4;
+            --text: #e8eaed;
+            --text-dim: #8b95a5;
             --border: #2a3548;
         }
         
@@ -25,80 +25,46 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            min-height: 100vh;
+            padding: 20px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
         
-        /* Header */
         header {
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
-            border-bottom: 2px solid var(--accent);
+            text-align: center;
             padding: 30px 0;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 30px;
         }
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo-icon svg {
-            width: 28px;
-            height: 28px;
-        }
-        
-        h1 {
-            font-size: 1.8rem;
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
             font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        header .date {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+        
+        header .subtitle {
             color: var(--text);
+            font-size: 1rem;
+            margin-top: 4px;
+            opacity: 0.8;
         }
         
-        h1 span {
-            color: var(--accent);
-        }
-        
-        .date-badge {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .date-badge strong {
-            color: var(--accent);
-        }
-        
-        /* Section Styles */
-        section {
+        .section {
             background: var(--bg-card);
             border-radius: 16px;
             padding: 24px;
@@ -106,47 +72,43 @@
             border: 1px solid var(--border);
         }
         
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .section-header h2 {
+        .section-title {
             font-size: 1.2rem;
             font-weight: 600;
             color: var(--accent);
-        }
-        
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(201, 255, 68, 0.15);
-            border-radius: 8px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
         }
         
-        /* Headline */
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Headline Section */
         .headline-box {
-            background: linear-gradient(135deg, rgba(201, 255, 68, 0.1) 0%, rgba(78, 234, 153, 0.05) 100%);
-            border-left: 4px solid var(--accent);
-            padding: 20px 24px;
-            border-radius: 0 12px 12px 0;
+            background: linear-gradient(135deg, #1a2235 0%, #0e1420 100%);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        
+        .headline-box h2 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
         }
         
         .headline-box p {
             font-size: 1.15rem;
             line-height: 1.7;
             color: var(--text);
-        }
-        
-        .headline-box strong {
-            color: var(--accent);
         }
         
         /* Health Score */
@@ -158,49 +120,36 @@
         }
         
         .score-circle {
-            position: relative;
             width: 180px;
             height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(var(--amber) 0% 52%, var(--border) 52% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
         
-        .score-circle svg {
-            transform: rotate(-90deg);
-        }
-        
-        .score-bg {
-            fill: none;
-            stroke: var(--bg);
-            stroke-width: 12;
-        }
-        
-        .score-fill {
-            fill: none;
-            stroke: var(--amber);
-            stroke-width: 12;
-            stroke-linecap: round;
-            stroke-dasharray: 440;
-            stroke-dashoffset: 132;
-        }
-        
-        .score-text {
+        .score-circle::before {
+            content: '';
+            width: 140px;
+            height: 140px;
+            background: var(--bg-card);
+            border-radius: 50%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
         }
         
         .score-value {
+            position: relative;
+            z-index: 1;
             font-size: 3rem;
             font-weight: 700;
             color: var(--amber);
-            line-height: 1;
         }
         
         .score-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
         }
         
         .metrics-grid {
@@ -210,440 +159,277 @@
         }
         
         .metric-item {
-            background: var(--bg);
+            background: var(--bg-card-alt);
             padding: 16px;
             border-radius: 10px;
             border: 1px solid var(--border);
         }
         
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .metric-item .label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
             margin-bottom: 6px;
         }
         
-        .metric-value {
+        .metric-item .value {
             font-size: 1.4rem;
             font-weight: 600;
         }
         
-        .metric-bar {
+        .metric-item .bar {
             height: 4px;
-            background: var(--bg-elevated);
+            background: var(--border);
             border-radius: 2px;
             margin-top: 8px;
             overflow: hidden;
         }
         
-        .metric-bar-fill {
+        .metric-item .bar-fill {
             height: 100%;
             border-radius: 2px;
             transition: width 0.3s ease;
         }
         
         /* Action Plan */
-        .action-grid {
+        .action-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+            gap: 12px;
         }
         
-        .action-card {
-            background: var(--bg);
-            border-radius: 12px;
-            padding: 18px;
-            border-left: 4px solid var(--border);
+        .action-item {
             display: flex;
-            gap: 14px;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-card-alt);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
         }
         
-        .action-card.buy {
-            border-left-color: var(--green);
-        }
-        
-        .action-card.sell {
+        .action-item.sell {
             border-left-color: var(--red);
         }
         
-        .action-card.watch {
+        .action-item.watch {
             border-left-color: var(--amber);
         }
         
-        .action-card.hedge {
-            border-left-color: #a78bfa;
+        .action-item.buy {
+            border-left-color: var(--green);
         }
         
         .action-badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            height: fit-content;
         }
         
-        .action-badge.buy {
-            background: rgba(78, 234, 153, 0.15);
+        .badge-buy {
+            background: rgba(78, 234, 153, 0.2);
             color: var(--green);
         }
         
-        .action-badge.sell {
-            background: rgba(255, 107, 133, 0.15);
+        .badge-sell {
+            background: rgba(255, 107, 133, 0.2);
             color: var(--red);
         }
         
-        .action-badge.watch {
-            background: rgba(255, 194, 102, 0.15);
+        .badge-watch {
+            background: rgba(255, 194, 102, 0.2);
             color: var(--amber);
         }
         
-        .action-badge.hedge {
-            background: rgba(167, 139, 250, 0.15);
-            color: #a78bfa;
+        .action-text {
+            flex: 1;
         }
         
-        .action-content h4 {
-            font-size: 1rem;
-            margin-bottom: 6px;
-            color: var(--text);
-        }
-        
-        .action-content p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+        .action-ticker {
+            font-weight: 600;
+            color: var(--accent);
         }
         
         /* Signal Table */
-        .table-wrapper {
-            overflow-x: auto;
-        }
-        
-        table {
+        .signal-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
         }
         
-        th {
+        .signal-table th {
             text-align: left;
-            padding: 14px 12px;
-            background: var(--bg);
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid var(--border);
-        }
-        
-        td {
-            padding: 14px 12px;
+            padding: 12px;
+            background: var(--bg-card-alt);
+            color: var(--text-dim);
+            font-weight: 500;
             border-bottom: 1px solid var(--border);
-            vertical-align: middle;
         }
         
-        tr:hover {
-            background: rgba(201, 255, 68, 0.03);
+        .signal-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
         }
         
-        .ticker {
-            font-weight: 700;
+        .signal-table tr:hover {
+            background: var(--bg-card-alt);
+        }
+        
+        .ticker-cell {
+            font-weight: 600;
             color: var(--accent);
         }
         
-        .price {
-            font-weight: 600;
-            font-family: 'SF Mono', 'Monaco', monospace;
-        }
-        
-        .change {
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-        
-        .change.positive {
-            color: var(--green);
-            background: rgba(78, 234, 153, 0.12);
-        }
-        
-        .change.negative {
-            color: var(--red);
-            background: rgba(255, 107, 133, 0.12);
-        }
-        
-        .trend-badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .trend-badge.up {
-            background: rgba(78, 234, 153, 0.15);
+        .positive {
             color: var(--green);
         }
         
-        .trend-badge.down {
-            background: rgba(255, 107, 133, 0.15);
+        .negative {
             color: var(--red);
         }
         
-        .trend-badge.neutral {
-            background: rgba(255, 194, 102, 0.15);
+        .neutral {
             color: var(--amber);
         }
         
         .signal-badge {
             padding: 4px 10px;
-            border-radius: 6px;
+            border-radius: 12px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 500;
         }
         
-        .signal-badge.bullish {
+        .signal-buy {
             background: rgba(78, 234, 153, 0.15);
             color: var(--green);
         }
         
-        .signal-badge.bearish {
+        .signal-sell {
             background: rgba(255, 107, 133, 0.15);
             color: var(--red);
         }
         
-        .signal-badge.neutral {
-            background: rgba(136, 146, 164, 0.15);
-            color: var(--text-muted);
-        }
-        
-        .sparkline {
-            width: 60px;
-            height: 24px;
+        .signal-hold {
+            background: rgba(255, 194, 102, 0.15);
+            color: var(--amber);
         }
         
         /* Detail Cards */
-        .detail-grid {
+        .detail-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
         
         .detail-card {
-            background: var(--bg);
+            background: var(--bg-card-alt);
             border-radius: 12px;
             padding: 20px;
             border: 1px solid var(--border);
         }
         
-        .detail-header {
+        .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 16px;
         }
         
-        .detail-ticker {
-            font-size: 1.4rem;
+        .card-ticker {
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--accent);
         }
         
-        .detail-name {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 2px;
+        .card-price {
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
-        .detail-price {
-            text-align: right;
+        .card-change {
+            font-size: 0.9rem;
+            margin-left: 8px;
         }
         
-        .detail-price-value {
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-family: 'SF Mono', 'Monaco', monospace;
-        }
-        
-        .detail-stats {
+        .card-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
         }
         
-        .detail-stat {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-        }
-        
-        .detail-stat-label {
-            color: var(--text-muted);
-        }
-        
-        .detail-stat-value {
-            font-weight: 600;
-        }
-        
-        .detail-analysis {
-            margin-top: 16px;
-            padding: 14px;
-            background: var(--bg-elevated);
+        .card-stat {
+            padding: 10px;
+            background: var(--bg-card);
             border-radius: 8px;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--text-muted);
         }
         
-        .detail-analysis strong {
-            color: var(--text);
+        .card-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
         }
         
-        /* Stories */
+        .card-stat-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        
+        .sparkline {
+            margin-top: 16px;
+        }
+        
+        /* Story Cards */
         .story-card {
-            background: var(--bg);
+            background: var(--bg-card-alt);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 16px;
-            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
         }
         
-        .story-card:last-child {
-            margin-bottom: 0;
+        .story-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
         
-        .story-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        
-        .story-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .story-title {
-            font-size: 1.05rem;
-            font-weight: 600;
+        .story-card p {
             color: var(--text);
-        }
-        
-        .story-content {
-            font-size: 0.9rem;
-            color: var(--text-muted);
             line-height: 1.7;
         }
         
-        .story-content strong {
-            color: var(--text);
-        }
-        
-        .story-tags {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .story-tag {
-            padding: 4px 10px;
-            background: var(--bg-elevated);
-            border-radius: 6px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-        
-        /* Breadth */
-        .breadth-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
-        
-        .breadth-item {
-            background: var(--bg);
-            padding: 18px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        
-        .breadth-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .breadth-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .breadth-bar {
-            height: 8px;
-            background: var(--bg-elevated);
-            border-radius: 4px;
-            margin-top: 12px;
-            overflow: hidden;
-        }
-        
-        .breadth-bar-fill {
-            height: 100%;
-            border-radius: 4px;
-        }
-        
-        /* Sector Leadership */
+        /* Sector Rankings */
         .sector-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
             gap: 10px;
         }
         
         .sector-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             padding: 12px 16px;
-            background: var(--bg);
-            border-radius: 10px;
+            background: var(--bg-card-alt);
+            border-radius: 8px;
         }
         
         .sector-rank {
             width: 28px;
             height: 28px;
-            background: var(--bg-elevated);
-            border-radius: 6px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
             font-weight: 700;
-            color: var(--text-muted);
+            font-size: 0.85rem;
         }
         
-        .sector-rank.top {
-            background: rgba(78, 234, 153, 0.15);
-            color: var(--green);
-        }
-        
-        .sector-rank.bottom {
-            background: rgba(255, 107, 133, 0.15);
-            color: var(--red);
+        .sector-rank.laggard {
+            background: var(--red);
+            color: white;
         }
         
         .sector-name {
@@ -653,208 +439,97 @@
         
         .sector-rs {
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-        
-        .sector-bar-container {
-            width: 120px;
-            height: 8px;
-            background: var(--bg-elevated);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
+            min-width: 60px;
+            text-align: right;
         }
         
         .sector-bar {
+            width: 100px;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .sector-bar-fill {
             height: 100%;
-            border-radius: 4px;
-            position: absolute;
+            border-radius: 3px;
         }
         
-        .sector-bar.positive {
-            background: var(--green);
-            left: 50%;
-        }
-        
-        .sector-bar.negative {
-            background: var(--red);
-            right: 50%;
-        }
-        
-        /* Volatility & Sentiment */
-        .vix-box {
+        /* Volatility Grid */
+        .vol-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
         }
         
-        .vix-card {
-            background: var(--bg);
+        .vol-item {
+            background: var(--bg-card-alt);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid var(--border);
+            text-align: center;
         }
         
-        .vix-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .vix-title {
+        .vol-item .label {
+            color: var(--text-dim);
             font-size: 0.9rem;
-            color: var(--text-muted);
+            margin-bottom: 8px;
         }
         
-        .vix-value {
-            font-size: 2.2rem;
+        .vol-item .value {
+            font-size: 2rem;
             font-weight: 700;
         }
         
-        .vix-desc {
+        .vol-item .change {
             font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 8px;
+            margin-top: 4px;
         }
         
-        .vix-scale {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 12px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-        
-        .vix-scale-bar {
-            height: 8px;
-            background: linear-gradient(to right, var(--green), var(--amber), var(--red));
-            border-radius: 4px;
-            margin-top: 8px;
-            position: relative;
-        }
-        
-        .vix-indicator {
-            width: 12px;
-            height: 12px;
-            background: var(--text);
-            border-radius: 50%;
-            position: absolute;
-            top: -2px;
-            transform: translateX(-50%);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* Risk On/Off */
-        .risk-grid {
+        /* Risk Ratios */
+        .ratio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
         }
         
-        .risk-item {
-            background: var(--bg);
-            padding: 18px;
+        .ratio-item {
+            background: var(--bg-card-alt);
+            padding: 16px;
             border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-        
-        .risk-pair {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
         }
         
-        .risk-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .ratio-label {
+            font-weight: 500;
         }
         
-        .risk-ratio {
-            font-size: 1.3rem;
+        .ratio-value {
             font-weight: 700;
+            font-size: 1.1rem;
         }
         
-        .risk-bar {
-            height: 8px;
-            background: var(--bg-elevated);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .risk-bar-fill {
-            height: 100%;
-            border-radius: 4px;
-        }
-        
-        .risk-interpretation {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 8px;
+        .ratio-signal {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 10px;
         }
         
         /* Calendar */
         .calendar-empty {
             text-align: center;
             padding: 40px;
-            color: var(--text-muted);
+            color: var(--text-dim);
         }
         
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .calendar-section h3 {
-            font-size: 1rem;
-            color: var(--accent);
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .calendar-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg);
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        
-        .calendar-date {
-            background: var(--bg-elevated);
-            padding: 8px 12px;
-            border-radius: 6px;
-            text-align: center;
-            min-width: 50px;
-        }
-        
-        .calendar-day {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .calendar-month {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-        
-        .calendar-info h4 {
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-        
-        .calendar-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .calendar-note {
+            background: var(--bg-card-alt);
+            padding: 16px;
+            border-radius: 10px;
+            border-left: 3px solid var(--amber);
         }
         
         /* Glossary */
@@ -865,10 +540,9 @@
         }
         
         .glossary-item {
-            background: var(--bg);
             padding: 16px;
+            background: var(--bg-card-alt);
             border-radius: 10px;
-            border: 1px solid var(--border);
         }
         
         .glossary-term {
@@ -878,8 +552,8 @@
         }
         
         .glossary-def {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            color: var(--text-dim);
             line-height: 1.6;
         }
         
@@ -887,29 +561,24 @@
         footer {
             text-align: center;
             padding: 30px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-size: 0.85rem;
             border-top: 1px solid var(--border);
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
-        footer strong {
-            color: var(--amber);
+        /* Table scroll on mobile */
+        .table-wrapper {
+            overflow-x: auto;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
+            body {
                 padding: 12px;
             }
             
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+            header h1 {
+                font-size: 1.8rem;
             }
             
             .health-score-container {
@@ -925,75 +594,241 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .detail-grid {
+            .detail-cards {
                 grid-template-columns: 1fr;
             }
             
-            table {
+            .signal-table {
                 font-size: 0.8rem;
             }
             
-            th, td {
-                padding: 10px 8px;
+            .signal-table th,
+            .signal-table td {
+                padding: 8px 6px;
             }
             
-            .sector-bar-container {
-                display: none;
+            .section {
+                padding: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#0e1420" stroke-width="2.5">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                            <polyline points="16 7 22 7 22 13"></polyline>
-                        </svg>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>📊 MarketPulse</h1>
+            <div class="date">29 Haziran 2026, Pazartesi</div>
+            <div class="subtitle">Ekmel'in Piyasası — Günlük Brifing</div>
+        </header>
+        
+        <!-- GÜNÜN MANŞETİ -->
+        <div class="headline-box">
+            <h2>🔥 Günün Manşeti</h2>
+            <p>
+                <strong>Yarı iletkenler çakıldı, defansif sektörler sığınak oldu!</strong> SOXX %-5.64 ile günün en sert düşüşünü yaşarken, SMH de %-3.97 geriledi — haftalık kayıplar %-10'a yaklaştı. Buna karşılık XLV (Sağlık) +%3 ve XBI (Biyoteknoloji) +%2.5 ile risk iştahı kaçanların ilk durağı oldu. VIX 18.3'te görece sakin kalsa da, QQQ'nun haftalık %-4.26 kaybı ve Ortadoğu gerginlikleri Mag-7 portföyler için dikkatli pozisyonlanma zamanı işaret ediyor.
+            </p>
+        </div>
+        
+        <!-- PİYASA SAĞLIK SKORU -->
+        <div class="section">
+            <div class="section-title">Piyasa Sağlık Skoru</div>
+            <div class="health-score-container">
+                <div style="text-align: center;">
+                    <div class="score-circle">
+                        <div>
+                            <div class="score-value">52</div>
+                            <div class="score-label">/100</div>
+                        </div>
                     </div>
-                    <div>
-                        <h1>Market<span>Pulse</span></h1>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">Ekmel'in Piyasası</div>
-                    </div>
+                    <p style="margin-top: 12px; color: var(--amber); font-weight: 600;">NÖTR — Temkinli Ol</p>
                 </div>
-                <div class="date-badge">
-                    <strong>26 Haziran 2026</strong> • Cuma Kapanış Raporu
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="label">Trend (SPY 50 EMA)</div>
+                        <div class="value neutral">Nötr</div>
+                        <div class="bar"><div class="bar-fill" style="width: 50%; background: var(--amber);"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="label">Momentum (RSI/MACD)</div>
+                        <div class="value negative">Zayıf</div>
+                        <div class="bar"><div class="bar-fill" style="width: 35%; background: var(--red);"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="label">Breadth (Katılım)</div>
+                        <div class="value positive">Güçlü</div>
+                        <div class="bar"><div class="bar-fill" style="width: 70%; background: var(--green);"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="label">Kazanç Sezonu</div>
+                        <div class="value neutral">Beklemede</div>
+                        <div class="bar"><div class="bar-fill" style="width: 50%; background: var(--amber);"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="label">Sentiment (VIX)</div>
+                        <div class="value positive">Olumlu</div>
+                        <div class="bar"><div class="bar-fill" style="width: 65%; background: var(--green);"></div></div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="label">Konsantrasyon Riski</div>
+                        <div class="value negative">Yüksek</div>
+                        <div class="bar"><div class="bar-fill" style="width: 80%; background: var(--red);"></div></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
-
-    <div class="container">
-        <!-- GÜNÜN MANŞETİ -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
+        
+        <!-- AKSİYON PLANI -->
+        <div class="section">
+            <div class="section-title">Ekmel İçin Aksiyon Planı</div>
+            <div class="action-list">
+                <div class="action-item sell">
+                    <span class="action-badge badge-sell">AZALT</span>
+                    <div class="action-text">
+                        <span class="action-ticker">SMH/SOXX</span> — Yarı iletken pozisyonlarını hafiflet. Haftalık %-9 kayıp, teknik destek kırılmış. NVDA call'larında rolling down veya partial close düşün.
+                    </div>
                 </div>
-                <h2>Günün Manşeti</h2>
-            </div>
-            <div class="headline-box">
-                <p>
-                    <strong>Yarı iletkenler geri döndü!</strong> SOXX <strong>+%3.94</strong> ile günün yıldızı olurken, SMH <strong>+%2.90</strong> ile yakın takipte. Ancak VIX <strong>19.60</strong> seviyesine tırmanarak haftalık bazda <strong>%13.43</strong> artış gösterdi — piyasada bir miktar temkinli iyimserlik hakim. Sağlık sektörü (XLV) haftada <strong>+%4.63</strong> ile sessiz şampiyonken, yazılım (IGV) <strong>-%4.86</strong> haftalık kayıpla geride kaldı. Biyoteknoloji (XBI) ise <strong>+%7.83</strong> haftalık performansla dikkat çekiyor.
-                </p>
-            </div>
-        </section>
-
-        <!-- PİYASA SAĞLIK SKORU -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
+                <div class="action-item watch">
+                    <span class="action-badge badge-watch">İZLE</span>
+                    <div class="action-text">
+                        <span class="action-ticker">QQQ</span> — 700 seviyesi kritik destek. Kırılırsa put spread açılabilir, tutarsa call yazma fırsatı doğar. Haftalık momentum negatif.
+                    </div>
                 </div>
-                <h2>Piyasa Sağlık Skoru</h2>
+                <div class="action-item buy">
+                    <span class="action-badge badge-buy">EKLE</span>
+                    <div class="action-text">
+                        <span class="action-ticker">XLV</span> — Sağlık sektörü haftalık +%6.85 ile lider. Defansif rotasyondan faydalanmak için %2-3 portföy payı düşünülebilir.
+                    </div>
+                </div>
+                <div class="action-item buy">
+                    <span class="action-badge badge-buy">FIRSATI DEĞERLENDİR</span>
+                    <div class="action-text">
+                        <span class="action-ticker">ITB</span> — İnşaat sektörü haftalık +%7.77 ile en güçlü performansı gösterdi. Faiz beklentileri yumuşarsa devam edebilir.
+                    </div>
+                </div>
+                <div class="action-item watch">
+                    <span class="action-badge badge-watch">HEDGE</span>
+                    <div class="action-text">
+                        <span class="action-ticker">GLD</span> — Altın haftalık %-2.85 geriledi ama jeopolitik risklerde tekrar talep görebilir. Put satışı ile premium toplanabilir.
+                    </div>
+                </div>
+                <div class="action-item watch">
+                    <span class="action-badge badge-watch">TAKİP</span>
+                    <div class="action-text">
+                        <span class="action-ticker">IWM</span> — Small-cap'ler +%0.31 ile pozitif ayrışıyor. Breadth iyileşmesi devam ederse, AI dışı çeşitlendirme fırsatı.
+                    </div>
+                </div>
             </div>
+        </div>
+        
+        <!-- SİNYAL TABLOSU -->
+        <div class="section">
+            <div class="section-title">Sinyal Tablosu</div>
+            <div class="table-wrapper">
+                <table class="signal-table">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Fiyat</th>
+                            <th>Günlük</th>
+                            <th>Haftalık</th>
+                            <th>Trend</th>
+                            <th>Sinyal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ticker-cell">SPY</td>
+                            <td>$728.99</td>
+                            <td class="negative">-0.72%</td>
+                            <td class="negative">-2.07%</td>
+                            <td class="neutral">→ Nötr</td>
+                            <td><span class="signal-badge signal-hold">İZLE</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">QQQ</td>
+                            <td>$706.52</td>
+                            <td class="negative">-1.38%</td>
+                            <td class="negative">-4.26%</td>
+                            <td class="negative">↓ Düşüş</td>
+                            <td><span class="signal-badge signal-sell">DİKKAT</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">SMH</td>
+                            <td>$611.61</td>
+                            <td class="negative">-3.97%</td>
+                            <td class="negative">-8.57%</td>
+                            <td class="negative">↓ Düşüş</td>
+                            <td><span class="signal-badge signal-sell">AZALT</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">SOXX</td>
+                            <td>$589.94</td>
+                            <td class="negative">-5.64%</td>
+                            <td class="negative">-9.93%</td>
+                            <td class="negative">↓ Düşüş</td>
+                            <td><span class="signal-badge signal-sell">AZALT</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">IGV</td>
+                            <td>$88.20</td>
+                            <td class="positive">+4.06%</td>
+                            <td class="positive">+1.02%</td>
+                            <td class="positive">↑ Yükseliş</td>
+                            <td><span class="signal-badge signal-buy">GÜÇLÜ</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XBI</td>
+                            <td>$155.38</td>
+                            <td class="positive">+2.50%</td>
+                            <td class="positive">+6.53%</td>
+                            <td class="positive">↑ Yükseliş</td>
+                            <td><span class="signal-badge signal-buy">AL</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLV</td>
+                            <td>$160.34</td>
+                            <td class="positive">+3.03%</td>
+                            <td class="positive">+6.85%</td>
+                            <td class="positive">↑ Yükseliş</td>
+                            <td><span class="signal-badge signal-buy">AL</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLK</td>
+                            <td>$181.11</td>
+                            <td class="negative">-1.87%</td>
+                            <td class="negative">-5.75%</td>
+                            <td class="negative">↓ Düşüş</td>
+                            <td><span class="signal-badge signal-sell">DİKKAT</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">XLF</td>
+                            <td>$53.57</td>
+                            <td class="positive">+0.22%</td>
+                            <td class="negative">-0.24%</td>
+                            <td class="neutral">→ Nötr</td>
+                            <td><span class="signal-badge signal-hold">İZLE</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">IWM</td>
+                            <td>$299.83</td>
+                            <td class="positive">+0.31%</td>
+                            <td class="positive">+0.55%</td>
+                            <td class="neutral">→ Nötr</td>
+                            <td><span class="signal-badge signal-hold">İZLE</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">DIA</td>
+                            <td>$517.75</td>
+                            <td class="negative">-0.29%</td>
+                            <td class="positive">+0.13%</td>
+                            <td class="neutral">→ Nötr</td>
+                            <td><span class="signal-badge signal-hold">TUT</span></td>
+                        </tr>
+                        <tr>
+                            <td class="ticker-cell">ITB</td>
+                            <td>$104.90</td>
+                            <td class="positive">+0.62%</td>
+                            <td class="positive">+7.77%</td>
+                            <td class="positive">↑ Yükseliş</td>
+                            <td><span class="signal
