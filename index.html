@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarketPulse — Ekmel'in Piyasası | 30 Haziran 2026</title>
+    <title>MarketPulse — Ekmel'in Piyasası | 01 Temmuz 2026</title>
     <style>
         :root {
             --bg: #0e1420;
-            --bg-card: #151c2c;
-            --bg-card-hover: #1a2438;
+            --bg-card: #151d2b;
+            --bg-card-hover: #1a2436;
             --accent: #c9ff44;
             --green: #4eea99;
             --red: #ff6b85;
             --amber: #ffc266;
-            --text: #e8eaed;
+            --text: #e8edf5;
             --text-muted: #8b95a8;
             --border: #2a3548;
         }
@@ -29,12 +29,13 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
         
         /* Header */
@@ -48,15 +49,16 @@
         .header-date {
             color: var(--accent);
             font-size: 14px;
-            text-transform: uppercase;
             letter-spacing: 2px;
+            text-transform: uppercase;
             margin-bottom: 10px;
         }
         
         .header-title {
             font-size: 42px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), var(--green));
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, var(--accent) 0%, #a8e063 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -65,35 +67,11 @@
         .header-subtitle {
             color: var(--text-muted);
             font-size: 16px;
-            margin-top: 8px;
         }
         
-        /* Sections */
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        /* Headline Box */
-        .headline-box {
-            background: linear-gradient(135deg, #1a2d4a, #152238);
+        /* Günün Manşeti */
+        .headline-section {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0e1420 100%);
             border: 1px solid var(--accent);
             border-radius: 16px;
             padding: 30px;
@@ -102,84 +80,165 @@
             overflow: hidden;
         }
         
-        .headline-box::before {
-            content: '📰';
-            font-size: 80px;
+        .headline-section::before {
+            content: '';
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.1;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        .headline-label {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .headline-label::before {
+            content: '📰';
         }
         
         .headline-text {
             font-size: 22px;
             font-weight: 500;
             line-height: 1.5;
-            position: relative;
-            z-index: 1;
+            color: var(--text);
+        }
+        
+        .headline-text .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .headline-text .positive {
+            color: var(--green);
+        }
+        
+        .headline-text .negative {
+            color: var(--red);
+        }
+        
+        /* Section Titles */
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
         }
         
         /* Health Score */
-        .health-grid {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-        }
-        
-        .health-main {
+        .health-score-container {
             background: var(--bg-card);
             border-radius: 16px;
             padding: 30px;
-            text-align: center;
             border: 1px solid var(--border);
         }
         
+        .health-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .health-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: conic-gradient(var(--green) 0deg, var(--green) 252deg, var(--border) 252deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .health-circle-inner {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .health-score {
-            font-size: 72px;
+            font-size: 48px;
             font-weight: 700;
             color: var(--green);
         }
         
         .health-label {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: 12px;
         }
         
-        .health-status {
-            display: inline-block;
-            background: rgba(78, 234, 153, 0.15);
+        .health-verdict {
+            text-align: center;
+        }
+        
+        .health-verdict-title {
+            font-size: 24px;
+            font-weight: 600;
             color: var(--green);
-            padding: 6px 16px;
-            border-radius: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .health-verdict-desc {
+            color: var(--text-muted);
             font-size: 14px;
-            margin-top: 15px;
         }
         
         .health-metrics {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
         }
         
         .metric-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px;
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 15px;
             border: 1px solid var(--border);
         }
         
-        .metric-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
         .metric-name {
-            font-size: 13px;
             color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
         
         .metric-value {
@@ -191,8 +250,8 @@
             height: 4px;
             background: var(--border);
             border-radius: 2px;
+            margin-top: 8px;
             overflow: hidden;
-            margin-top: 10px;
         }
         
         .metric-bar-fill {
@@ -204,52 +263,67 @@
         /* Action Plan */
         .action-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
         }
         
-        .action-item {
+        .action-card {
             background: var(--bg-card);
             border-radius: 12px;
             padding: 20px;
-            border-left: 4px solid;
+            border: 1px solid var(--border);
             display: flex;
             gap: 15px;
-            align-items: flex-start;
         }
         
-        .action-item.buy { border-left-color: var(--green); }
-        .action-item.sell { border-left-color: var(--red); }
-        .action-item.watch { border-left-color: var(--amber); }
-        .action-item.hold { border-left-color: var(--accent); }
-        
         .action-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             flex-shrink: 0;
         }
         
-        .action-item.buy .action-icon { background: rgba(78, 234, 153, 0.15); }
-        .action-item.sell .action-icon { background: rgba(255, 107, 133, 0.15); }
-        .action-item.watch .action-icon { background: rgba(255, 194, 102, 0.15); }
-        .action-item.hold .action-icon { background: rgba(201, 255, 68, 0.15); }
+        .action-icon.buy {
+            background: rgba(78, 234, 153, 0.15);
+        }
+        
+        .action-icon.sell {
+            background: rgba(255, 107, 133, 0.15);
+        }
+        
+        .action-icon.watch {
+            background: rgba(255, 194, 102, 0.15);
+        }
+        
+        .action-icon.hold {
+            background: rgba(201, 255, 68, 0.15);
+        }
         
         .action-content h4 {
             font-size: 15px;
+            font-weight: 600;
             margin-bottom: 5px;
         }
         
         .action-content p {
-            font-size: 13px;
             color: var(--text-muted);
+            font-size: 13px;
+        }
+        
+        .action-ticker {
+            color: var(--accent);
+            font-weight: 600;
         }
         
         /* Signal Table */
+        .signal-table-container {
+            overflow-x: auto;
+        }
+        
         .signal-table {
             width: 100%;
             border-collapse: collapse;
@@ -259,67 +333,112 @@
         }
         
         .signal-table th {
-            background: var(--bg-card-hover);
-            padding: 15px;
+            background: var(--bg);
+            padding: 14px 16px;
             text-align: left;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-muted);
-            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
         }
         
         .signal-table td {
-            padding: 15px;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--border);
             font-size: 14px;
-        }
-        
-        .signal-table tr:last-child td {
-            border-bottom: none;
         }
         
         .signal-table tr:hover {
             background: var(--bg-card-hover);
         }
         
-        .ticker {
+        .signal-table .ticker {
             font-weight: 600;
             color: var(--accent);
         }
         
-        .price-up { color: var(--green); }
-        .price-down { color: var(--red); }
+        .signal-table .price {
+            font-weight: 500;
+        }
         
-        .trend-badge {
+        .change-badge {
             display: inline-block;
             padding: 4px 10px;
-            border-radius: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .change-badge.positive {
+            background: rgba(78, 234, 153, 0.15);
+            color: var(--green);
+        }
+        
+        .change-badge.negative {
+            background: rgba(255, 107, 133, 0.15);
+            color: var(--red);
+        }
+        
+        .trend-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 12px;
             font-weight: 500;
         }
         
-        .trend-up { background: rgba(78, 234, 153, 0.15); color: var(--green); }
-        .trend-down { background: rgba(255, 107, 133, 0.15); color: var(--red); }
-        .trend-neutral { background: rgba(255, 194, 102, 0.15); color: var(--amber); }
+        .trend-badge.up {
+            background: rgba(78, 234, 153, 0.1);
+            color: var(--green);
+        }
+        
+        .trend-badge.down {
+            background: rgba(255, 107, 133, 0.1);
+            color: var(--red);
+        }
+        
+        .trend-badge.neutral {
+            background: rgba(255, 194, 102, 0.1);
+            color: var(--amber);
+        }
         
         .signal-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .signal-buy { background: var(--green); color: #000; }
-        .signal-sell { background: var(--red); color: #fff; }
-        .signal-hold { background: var(--amber); color: #000; }
-        .signal-watch { background: var(--border); color: var(--text); }
+        .signal-badge.buy {
+            background: var(--green);
+            color: var(--bg);
+        }
+        
+        .signal-badge.sell {
+            background: var(--red);
+            color: white;
+        }
+        
+        .signal-badge.hold {
+            background: var(--amber);
+            color: var(--bg);
+        }
+        
+        .signal-badge.watch {
+            background: var(--text-muted);
+            color: var(--bg);
+        }
         
         /* Detail Cards */
         .detail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
         
@@ -333,37 +452,42 @@
         .detail-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
         }
         
         .detail-ticker {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--accent);
         }
         
         .detail-name {
-            font-size: 13px;
             color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 2px;
         }
         
-        .detail-price {
+        .detail-price-box {
             text-align: right;
         }
         
-        .detail-price-value {
+        .detail-price {
             font-size: 28px;
             font-weight: 600;
         }
         
-        .detail-price-change {
+        .detail-change {
             font-size: 14px;
+            font-weight: 500;
         }
         
-        .detail-sparkline {
+        .detail-chart {
             height: 60px;
             margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .detail-stats {
@@ -379,57 +503,76 @@
         }
         
         .detail-stat-label {
-            font-size: 11px;
             color: var(--text-muted);
+            font-size: 11px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .detail-stat-value {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             margin-top: 4px;
         }
         
+        .detail-note {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(201, 255, 68, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
         /* Stories */
+        .story-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
         .story-card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 25px;
-            margin-bottom: 20px;
             border: 1px solid var(--border);
         }
         
-        .story-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+        .story-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
         }
         
-        .story-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            background: rgba(201, 255, 68, 0.1);
+        .story-badge.bullish {
+            background: rgba(78, 234, 153, 0.15);
+            color: var(--green);
+        }
+        
+        .story-badge.bearish {
+            background: rgba(255, 107, 133, 0.15);
+            color: var(--red);
+        }
+        
+        .story-badge.neutral {
+            background: rgba(255, 194, 102, 0.15);
+            color: var(--amber);
         }
         
         .story-title {
             font-size: 18px;
             font-weight: 600;
+            margin-bottom: 10px;
         }
         
-        .story-subtitle {
-            font-size: 13px;
+        .story-text {
             color: var(--text-muted);
-        }
-        
-        .story-content {
-            color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.7;
         }
         
@@ -437,121 +580,214 @@
         .breadth-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            gap: 15px;
         }
         
         .breadth-card {
             background: var(--bg-card);
             border-radius: 12px;
-            padding: 25px;
-            text-align: center;
+            padding: 20px;
             border: 1px solid var(--border);
+            text-align: center;
         }
         
         .breadth-value {
             font-size: 36px;
             font-weight: 700;
+            margin-bottom: 5px;
         }
         
         .breadth-label {
-            font-size: 13px;
             color: var(--text-muted);
-            margin-top: 5px;
+            font-size: 12px;
         }
         
-        /* Sector Leadership */
-        .sector-bar {
+        .breadth-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        
+        .breadth-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        /* Sector RS */
+        .sector-list {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .sector-row {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
+            padding: 12px 15px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
         
-        .sector-bar:last-child {
-            border-bottom: none;
+        .sector-rank {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .sector-rank.top {
+            background: var(--green);
+            color: var(--bg);
+        }
+        
+        .sector-rank.mid {
+            background: var(--amber);
+            color: var(--bg);
+        }
+        
+        .sector-rank.bottom {
+            background: var(--red);
+            color: white;
+        }
+        
+        .sector-info {
+            flex: 1;
         }
         
         .sector-name {
-            width: 80px;
             font-weight: 500;
             font-size: 14px;
         }
         
+        .sector-ticker {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        
+        .sector-rs {
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: right;
+        }
+        
         .sector-bar-container {
-            flex: 1;
-            height: 24px;
-            background: var(--bg);
-            border-radius: 4px;
+            width: 100px;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .sector-bar-fill {
-            height: 100%;
-            position: absolute;
-            top: 0;
-            border-radius: 4px;
-        }
-        
-        .sector-bar-fill.positive {
-            left: 50%;
-            background: linear-gradient(90deg, var(--green), rgba(78, 234, 153, 0.5));
-        }
-        
-        .sector-bar-fill.negative {
-            right: 50%;
-            background: linear-gradient(270deg, var(--red), rgba(255, 107, 133, 0.5));
+            overflow: visible;
         }
         
         .sector-bar-center {
             position: absolute;
-            left: 50%;
             top: 0;
-            bottom: 0;
+            left: 50%;
             width: 2px;
+            height: 100%;
             background: var(--text-muted);
         }
         
-        .sector-value {
-            width: 60px;
-            text-align: right;
-            font-weight: 600;
-            font-size: 14px;
+        .sector-bar-fill {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            border-radius: 3px;
         }
         
-        /* Volatility & Sentiment */
+        /* Volatility */
+        .volatility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
         .vix-card {
             background: var(--bg-card);
             border-radius: 16px;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
+            padding: 25px;
             border: 1px solid var(--border);
-        }
-        
-        .vix-item {
             text-align: center;
         }
         
         .vix-value {
-            font-size: 42px;
+            font-size: 56px;
             font-weight: 700;
+            color: var(--green);
         }
         
         .vix-label {
-            font-size: 14px;
             color: var(--text-muted);
+            font-size: 14px;
             margin-top: 5px;
         }
         
-        .vix-status {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
+        .vix-change {
             margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .vix-gauge {
+            margin-top: 20px;
+            height: 10px;
+            background: linear-gradient(to right, var(--green) 0%, var(--amber) 50%, var(--red) 100%);
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .vix-gauge-marker {
+            position: absolute;
+            top: -5px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .sentiment-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .sentiment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .sentiment-name {
+            font-weight: 500;
+        }
+        
+        .sentiment-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .sentiment-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .sentiment-bar-fill {
+            height: 100%;
+            border-radius: 4px;
         }
         
         /* Risk On/Off */
@@ -572,10 +808,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 10px;
         }
         
         .risk-ticker {
             font-weight: 600;
+            font-size: 15px;
         }
         
         .risk-vs {
@@ -583,57 +821,99 @@
             font-size: 12px;
         }
         
-        .risk-direction {
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 12px;
+        .risk-ratio {
+            font-size: 20px;
             font-weight: 600;
         }
         
-        .risk-on { background: rgba(78, 234, 153, 0.15); color: var(--green); }
-        .risk-off { background: rgba(255, 107, 133, 0.15); color: var(--red); }
-        
-        /* Calendar */
-        .calendar-list {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .calendar-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border);
+        .risk-indicator {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            font-size: 13px;
         }
         
-        .calendar-item:last-child {
-            border-bottom: none;
+        .risk-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
         }
         
-        .calendar-date {
-            background: var(--accent);
-            color: #000;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 12px;
-            min-width: 60px;
+        .risk-dot.on {
+            background: var(--green);
+        }
+        
+        .risk-dot.off {
+            background: var(--red);
+        }
+        
+        /* Calendar */
+        .calendar-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border);
+        }
+        
+        .calendar-empty {
             text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+        }
+        
+        .calendar-day {
+            margin-bottom: 20px;
+        }
+        
+        .calendar-day:last-child {
+            margin-bottom: 0;
+        }
+        
+        .calendar-day-header {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--accent);
         }
         
         .calendar-event {
-            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
         }
         
-        .calendar-title {
-            font-weight: 500;
+        .calendar-event:last-child {
+            border-bottom: none;
         }
         
-        .calendar-type {
-            font-size: 12px;
+        .calendar-time {
             color: var(--text-muted);
+            font-size: 12px;
+            min-width: 60px;
+        }
+        
+        .calendar-name {
+            flex: 1;
+            font-size: 14px;
+        }
+        
+        .calendar-importance {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .calendar-importance.high {
+            background: var(--red);
+        }
+        
+        .calendar-importance.medium {
+            background: var(--amber);
+        }
+        
+        .calendar-importance.low {
+            background: var(--green);
         }
         
         /* Glossary */
@@ -645,21 +925,22 @@
         
         .glossary-item {
             background: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             border: 1px solid var(--border);
         }
         
         .glossary-term {
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
         }
         
         .glossary-def {
-            font-size: 14px;
             color: var(--text-muted);
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.5;
         }
         
         /* Footer */
@@ -669,16 +950,16 @@
             margin-top: 40px;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .footer-disclaimer {
             background: rgba(255, 107, 133, 0.1);
             border: 1px solid rgba(255, 107, 133, 0.3);
-            padding: 15px 25px;
             border-radius: 8px;
-            display: inline-block;
+            padding: 15px;
             margin-bottom: 20px;
+            color: var(--red);
         }
         
         /* Responsive */
@@ -687,168 +968,66 @@
                 font-size: 28px;
             }
             
-            .health-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .health-metrics {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .signal-table {
-                display: block;
-                overflow-x: auto;
-            }
-            
             .headline-text {
                 font-size: 18px;
             }
             
+            .health-main {
+                flex-direction: column;
+            }
+            
             .detail-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .signal-table {
+                font-size: 12px;
+            }
+            
+            .signal-table th,
+            .signal-table td {
+                padding: 10px 8px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
+        <!-- Header -->
         <header class="header">
-            <div class="header-date">30 Haziran 2026 • Salı</div>
+            <div class="header-date">01 Temmuz 2026 • Çarşamba</div>
             <h1 class="header-title">Ekmel'in Piyasası</h1>
-            <p class="header-subtitle">MarketPulse Günlük Piyasa Raporu</p>
+            <p class="header-subtitle">MarketPulse Günlük Analiz Raporu</p>
         </header>
-
-        <!-- GÜNÜN MANŞETİ -->
-        <div class="headline-box">
+        
+        <!-- Günün Manşeti -->
+        <section class="headline-section">
+            <div class="headline-label">Günün Manşeti</div>
             <p class="headline-text">
-                🚀 <strong>Yarı iletkenler güne damga vurdu!</strong> SOXX +%4.14 ve SMH +%3.33 ile piyasanın lokomotifi olurken, QQQ %2.49'luk yükselişle büyük teknolojiyi taşıdı. ABD-İran geriliminin yumuşaması risk iştahını artırdı; VIX %0.79 geri çekilerek 17.51'e indi — sakin bir volatilite ortamı hakim. Biotech (XBI) haftalık %7.67 kazançla dikkat çekiyor; defansif rotasyondan ziyade büyüme varlıklarına talep görülüyor. Enerji (XLE -%0.48) ve materyaller (XLB -%1.82) günün geride kalanları.
+                <span class="highlight">Yarı iletkenler patladı!</span> SOXX <span class="positive">+%4.3</span>, SMH <span class="positive">+%3.8</span> ile günün yıldızları oldu — haftalık kazanç <span class="positive">%6</span>'yı aştı. QQQ <span class="positive">+%1.7</span> ile teknoloji rallisini sürdürürken, defansif sektörler (XLP <span class="negative">-%1.5</span>, XLU <span class="negative">-%1.5</span>) satış baskısı gördü. VIX <span class="positive">17.1</span>'de sakin seyrini koruyor — risk iştahı devam ediyor, Ekmel'in portföyü için ideal koşullar.
             </p>
-        </div>
-
-        <!-- PİYASA SAĞLIK SKORU -->
+        </section>
+        
+        <!-- Piyasa Sağlık Skoru -->
         <section class="section">
-            <h2 class="section-title">Piyasa Sağlık Skoru</h2>
-            <div class="health-grid">
+            <h2 class="section-title">
+                <span class="section-icon">💊</span>
+                Piyasa Sağlık Skoru
+            </h2>
+            <div class="health-score-container">
                 <div class="health-main">
-                    <div class="health-score">74</div>
-                    <div class="health-label">100 üzerinden</div>
-                    <div class="health-status">✓ Sağlıklı Yükseliş</div>
+                    <div class="health-circle">
+                        <div class="health-circle-inner">
+                            <div class="health-score">70</div>
+                            <div class="health-label">/ 100</div>
+                        </div>
+                    </div>
+                    <div class="health-verdict">
+                        <div class="health-verdict-title">SAĞLIKLI — Risk Alınabilir</div>
+                        <div class="health-verdict-desc">Momentum güçlü, breadth daralmakta ama henüz tehlike yok. Büyük teknoloji liderliği belirgin.</div>
+                    </div>
                 </div>
                 <div class="health-metrics">
                     <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Trend</span>
-                            <span style="color: var(--green);">↑</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--green);">82</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 82%; background: var(--green);"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Momentum</span>
-                            <span style="color: var(--green);">↑</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--green);">78</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 78%; background: var(--green);"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Genişlik (Breadth)</span>
-                            <span style="color: var(--amber);">→</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--amber);">65</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 65%; background: var(--amber);"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Kazanç Sezonu</span>
-                            <span style="color: var(--text-muted);">—</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--text-muted);">N/A</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 0%; background: var(--text-muted);"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Sentiment</span>
-                            <span style="color: var(--green);">↑</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--green);">72</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 72%; background: var(--green);"></div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">
-                            <span class="metric-name">Konsantrasyon</span>
-                            <span style="color: var(--amber);">⚠</span>
-                        </div>
-                        <div class="metric-value" style="color: var(--amber);">58</div>
-                        <div class="metric-bar">
-                            <div class="metric-bar-fill" style="width: 58%; background: var(--amber);"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- AKSİYON PLANI -->
-        <section class="section">
-            <h2 class="section-title">Ekmel İçin Aksiyon Planı</h2>
-            <div class="action-grid">
-                <div class="action-item buy">
-                    <div class="action-icon">🎯</div>
-                    <div class="action-content">
-                        <h4>SMH Call Spread Değerlendir</h4>
-                        <p>Yarı iletken momentumu güçlü (+%3.33 günlük, +%1.60 haftalık). Ağustos vadeli ATM call spread'leri IV düşerken cazip görünüyor. NVDA ve AVGO ağırlıklı portföye ek momentum sağlayabilir.</p>
-                    </div>
-                </div>
-                <div class="action-item buy">
-                    <div class="action-icon">💊</div>
-                    <div class="action-content">
-                        <h4>XBI Pozisyonunu Gözden Geçir</h4>
-                        <p>Biotech haftalık %7.67 kazanç ile sektör lideri. Eğer pozisyonun yoksa, düzeltmede alım için watchlist'e ekle. M&A haberleri sektörü destekliyor.</p>
-                    </div>
-                </div>
-                <div class="action-item watch">
-                    <div class="action-icon">👁️</div>
-                    <div class="action-content">
-                        <h4>IWM Kırılma İzle</h4>
-                        <p>Russell 2000 günlük -%0.29 ile ana endekslerden negatif ayrıştı. 295-300 bandı kritik destek. Kırılma olursa risk-off sinyali güçlenir.</p>
-                    </div>
-                </div>
-                <div class="action-item sell">
-                    <div class="action-icon">⛽</div>
-                    <div class="action-content">
-                        <h4>XLE Pozisyonlarını Hafiflet</h4>
-                        <p>Petrol Haziran'da ~%20 düştü. Enerji sektörü RS -2.63 ile en zayıf performans. Doha görüşmeleri belirsiz, downside riski devam ediyor.</p>
-                    </div>
-                </div>
-                <div class="action-item hold">
-                    <div class="action-icon">🏦</div>
-                    <div class="action-content">
-                        <h4>XLF Mevcut Pozisyonu Tut</h4>
-                        <p>Finansallar nötr (+%0.28 günlük, -%0.30 haftalık). Q2 bilanço sezonu öncesi bekle-gör stratejisi uygun. Spread trade'leri (XLF vs XLK) yeniden dengelenebilir.</p>
-                    </div>
-                </div>
-                <div class="action-item watch">
-                    <div class="action-icon">🛡️</div>
-                    <div class="action-content">
-                        <h4>VIX 15 Altında Hedge Ekle</h4>
-                        <p>VIX 17.51'de "düşük korku" bölgesinde. Q3 başlarken jeopolitik risk ve bilanço sezonu öncesi ucuz put koruması değerlendir.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SİNYAL TABLOSU -->
-        <section class="section">
-            <h2 class="section-
+                        <div class="metric-name">Trend</div>
+                        <div class="metric-
